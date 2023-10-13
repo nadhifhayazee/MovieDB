@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Movie DB"
 include(":app")
- 
+include(":data")
+include(":commons")
