@@ -1,5 +1,6 @@
 package com.nadhifhayazee.moviedb.data.datasource.movie
 
+import com.nadhifhayazee.moviedb.commons.exception.NoDataException
 import com.nadhifhayazee.moviedb.commons.model.UIMovie
 import com.nadhifhayazee.moviedb.commons.model.UIMovieDetail
 import com.nadhifhayazee.moviedb.data.room.dao.MovieDao
@@ -19,13 +20,20 @@ class LocalMovieDataSource @Inject constructor(
                 val mappingMovies = movies.map {
                     it.toUIMovie()
                 }
-                send(mappingMovies)
+                if (mappingMovies.isNotEmpty()) send(mappingMovies)
+                else throw NoDataException()
             }
         }
     }
 
-    suspend fun getMovieById(id: Int): UIMovie? {
-        return movieDao.getMovieById(id)?.toUIMovie()
+    fun getMovieById(id: Int): Flow<UIMovie?> {
+        return channelFlow {
+            movieDao.getMovieById(id).collectLatest {
+                send(
+                    it?.toUIMovie()
+                )
+            }
+        }
     }
 
     suspend fun insertMovie(movie: UIMovieDetail) {
@@ -33,8 +41,6 @@ class LocalMovieDataSource @Inject constructor(
     }
 
     suspend fun deleteMovie(id: Int) {
-        movieDao.getMovieById(id)?.let {
-            movieDao.deleteMovie(it)
-        }
+        movieDao.deleteMovie(id)
     }
 }

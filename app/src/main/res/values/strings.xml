@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Movie DB</string>
+    <string name="favorite_content_description">Movie Favorite Button</string>
+    <string name="search_content_description">Search Movie Button</string>
+    <string name="movie_poster_content_description">Movie Poster Image</string>
+    <string name="back_content_description">Button Back</string>
+    <string name="button_retry_content_description">Retry</string>
+    <string name="search_movie_placeholder">Search movie</string>
+    <string name="not_found_movie_message">No Movies Found!</string>
+    <string name="default_error_get_movies">Failed Get Movies!</string>
+    <string name="favorite_movies">Favorite Movies</string>
 </resources>

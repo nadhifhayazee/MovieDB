@@ -9,4 +9,6 @@ object Constant {
 
     const val TABLE_FAVORITE_MOVIE = "favorite_movie"
 
+    const val MOVIE_ID_KEY = "movieId"
+
 }

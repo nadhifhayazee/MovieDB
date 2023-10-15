@@ -78,12 +78,13 @@ class MovieRepository @Inject constructor(
     }
 
     fun movieIsExistInLocal(id: Int): Flow<Boolean> {
-        return flow {
+        return channelFlow {
             try {
-                val movie = localMovieDataSource.getMovieById(id)
-                emit(movie != null)
+                localMovieDataSource.getMovieById(id).collectLatest { movie ->
+                    send(movie != null)
+                }
             } catch (e: Exception) {
-                emit(false)
+                send(false)
             }
         }
     }

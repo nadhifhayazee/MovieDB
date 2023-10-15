@@ -31,7 +31,7 @@ class MoviePagingDataSource @Inject constructor(
                     ) currentPage + 1 else null
                 )
             } else {
-                LoadResult.Error(NoDataException("No Data"))
+                LoadResult.Error(NoDataException())
             }
 
         } catch (exception: IOException) {

@@ -13,13 +13,13 @@ interface MovieDao {
     fun getMovies(): Flow<List<MovieEntity>>
 
     @Query("SELECT * from favorite_movie where id=:id")
-    suspend fun getMovieById(id: Int): MovieEntity?
+    fun getMovieById(id: Int): Flow<MovieEntity?>
 
     @Insert
     suspend fun insertMovie(movieEntity: MovieEntity)
 
-    @Delete
-    suspend fun deleteMovie(movieEntity: MovieEntity)
+    @Query("DELETE from favorite_movie where id=:id")
+    suspend fun deleteMovie(id: Int)
 
 
 }

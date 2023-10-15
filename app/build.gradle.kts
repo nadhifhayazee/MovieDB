@@ -55,6 +55,9 @@ android {
 
 dependencies {
 
+    implementation(project(":data"))
+    implementation(project(":commons"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -71,5 +74,10 @@ dependencies {
     debugImplementation(libs.compose.ui.test.manifest)
 
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.bundles.paging)
+    implementation(libs.coil.compose)
+
 }

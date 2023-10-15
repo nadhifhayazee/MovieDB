@@ -37,7 +37,7 @@ class RemoteMovieDataSource @Inject constructor(
     suspend fun getMovieById(movieId: Int): UIMovieDetail? {
         var movie: UIMovieDetail? = null
 
-        movieService.getMovieById(BuildConfig.API_KEY, movieId).validateResponse {
+        movieService.getMovieById(movieId, BuildConfig.API_KEY).validateResponse {
             movie = it.toUIMovieDetail()
         }
 

@@ -70,10 +70,13 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 
-    implementation(libs.room.runtime)
+    implementation(libs.bundles.room)
     kapt(libs.room.compiler)
 
     implementation(libs.bundles.retrofit)
 
     implementation(libs.bundles.paging)
+
+    debugImplementation(libs.chucker.debuger)
+
 }

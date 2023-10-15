@@ -3,6 +3,7 @@ package com.nadhifhayazee.moviedb.data.retrofit.model
 import com.nadhifhayazee.moviedb.commons.model.UIGenre
 import com.nadhifhayazee.moviedb.commons.model.UIMovie
 import com.nadhifhayazee.moviedb.commons.model.UIMovieDetail
+import com.nadhifhayazee.moviedb.data.BuildConfig
 
 data class Movie(
     var id: Int?,
@@ -12,7 +13,7 @@ data class Movie(
 ) {
     fun toUIMovie(): UIMovie {
         return UIMovie(
-            id, title, poster_path
+            id, title, BuildConfig.IMAGE_URL + poster_path
         )
     }
 }
@@ -30,7 +31,7 @@ data class MovieDetail(
 ) {
     fun toUIMovieDetail(): UIMovieDetail {
         return UIMovieDetail(
-            id, title, poster_path, overview, genres.mapToUIGenre(), vote_average
+            id, title, BuildConfig.IMAGE_URL + poster_path, overview, genres.mapToUIGenre(), vote_average, BuildConfig.BACKDROP_URL + backdrop_path
         )
     }
 }

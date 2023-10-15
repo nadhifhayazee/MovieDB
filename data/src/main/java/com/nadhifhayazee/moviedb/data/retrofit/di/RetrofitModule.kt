@@ -1,9 +1,12 @@
 package com.nadhifhayazee.moviedb.data.retrofit.di
 
+import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.nadhifhayazee.moviedb.commons.constant.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -33,9 +36,11 @@ object RetrofitModule {
     @Provides
     @Singleton
     fun provideOkHttpClientBuilder(
+        @ApplicationContext context: Context,
         httpLoggingInterceptor: HttpLoggingInterceptor,
         headerInterceptor: Interceptor,
     ): OkHttpClient.Builder = OkHttpClient().newBuilder()
+        .addInterceptor(ChuckerInterceptor(context))
         .addInterceptor(headerInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .readTimeout(Constant.DEFAULT_TIMEOUT_IN_SECOND, TimeUnit.SECONDS)
